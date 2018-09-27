@@ -57,7 +57,7 @@ module.exports = function () {
         },
         {
           test: /\.scss$/,
-          include: path.resolve(__dirname, 'src/css/'),
+          include: path.resolve(__dirname, 'src/global-css/'),
           loaders: [
             isDevMode ? 'style-loader?sourceMap' : MiniCssExtractPlugin.loader,
             { loader: "css-loader", options: { sourceMap: isDevMode } },
