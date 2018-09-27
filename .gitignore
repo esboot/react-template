@@ -30,3 +30,4 @@ typings/
 
 /dist/
 .idea
+yarn.lock
