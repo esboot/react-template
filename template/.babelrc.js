@@ -1,13 +1,12 @@
-{
+const userConfig = require('./esboot.config');
+
+module.exports = {
   "presets": [
     [
       "@babel/env",
       {
         "targets": {
-          "browsers": [
-            "iOS >= 8",
-            "Android >= 4.4"
-          ]
+          "browsers": userConfig.browsers
         },
         "modules": false,
         "useBuiltIns": "usage"
@@ -31,5 +30,10 @@
         "handleMissingStyleName": "warn"
       }
     ]
-  ]
-}
+  ],
+  "env": {
+    "production": {
+      "plugins": ["transform-react-remove-prop-types"]
+    }
+  }
+};
