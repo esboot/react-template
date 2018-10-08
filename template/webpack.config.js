@@ -2,11 +2,8 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-// const WebpackBar = require('webpackbar');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-// const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
-const ErrorOverlayPlugin = require('error-overlay-webpack-plugin')
+const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 
 const userConfig = require('./esboot.config');
 
@@ -26,7 +23,7 @@ module.exports = function () {
   };
 
   const cfg = {
-    devtool: isDevMode ? 'cheap-module-eval-source-map' : '',
+    devtool: isDevMode ? 'cheap-module-source-map' : '',
     mode: isDevMode ? 'development' : 'production',
     performance: {
       hints: false,
@@ -61,7 +58,6 @@ module.exports = function () {
           test: /\.css/,
           loaders: ['style-loader', 'css-loader'],
         },
-        { test: /\.hbs$/, loader: "handlebars-loader" },
         {
           test: /\.scss$/,
           exclude: path.resolve(__dirname, 'src/global-css/'), // 非src/css下的scss开启局部样式模式
@@ -94,53 +90,36 @@ module.exports = function () {
 
   };
 
-  cfg.plugins = [
-    // new FriendlyErrorsWebpackPlugin(),
-    // new WebpackBar(),
-    // new webpack.NamedModulesPlugin(),
-    new ErrorOverlayPlugin()
-  ];
+  cfg.plugins = [];
 
   if (isDevMode) {
     cfg.devServer = {
-      // clientLogLevel: 'none',
       compress: true,
       watchContentBase: true,
-      // historyApiFallback: {
-      //   disableDotRule: true,
-      // },
+      historyApiFallback: {
+        disableDotRule: true,
+      },
       port: 9000,
       host: '0.0.0.0',
       useLocalIp: true,
-      // quiet: true,
-      // overlay: false,
-      // before(app) {
-      //   // This lets us open files from the runtime error overlay.
-      //   app.use(errorOverlayMiddleware());
-      //   // This service worker file is effectively a 'no-op' that will reset any
-      //   // previous service worker registered for the same host:port combination.
-      //   // We do this in development to avoid hitting the production cache if
-      //   // it used the same host and port.
-      //   // https://github.com/facebookincubator/create-react-app/issues/2272#issuecomment-302832432
-      //   // app.use(noopServiceWorkerMiddleware());
-      // },
-      // stats: {
-      //   all: false,
-      //   builtAt: true,
-      //   errors: true,
-      //   errorDetails: true,
-      //   timings: true,
-      //   warnings: true,
-      // },
+      stats: {
+        all: false,
+        builtAt: true,
+        errors: true,
+        errorDetails: true,
+        timings: true,
+        warnings: true,
+      },
     };
 
     cfg.plugins = cfg.plugins.concat([
+      new ErrorOverlayPlugin(),
       new HtmlWebpackPlugin({
         inject: true,
         chunks: ['index'],
         filename: 'index.html',
         title: "ESBoot App",
-        template: 'template/index.hbs'
+        template: 'template/index.ejs'
       }),
       new HtmlWebpackPlugin({
         inject: true,

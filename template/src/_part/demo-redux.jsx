@@ -10,9 +10,11 @@ class Demo extends React.Component {
     const { dispatch, appState: { data } } = this.props;
     return (
       <div styleName="hello">
-        Hello React! ACDE
-        <div>{data}</div>{props.fasdf}
-        <button type="button" onClick2={() => dispatch(syncAction(`You click me! ${Math.random()}`))}>
+        Hello React!
+        <div>{data}</div>
+        <button
+          type="button" onClick={() => dispatch(syncAction(`You click me! ${Math.random()}`))}
+        >
           click me!
         </button>
       </div>
