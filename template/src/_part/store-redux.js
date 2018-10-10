@@ -11,11 +11,11 @@ export function configureStore(initialState = {}) {
     ),
   );
 
-  // if (module.hot) {
-  //   module.hot.accept('./model/reducer', () => {
-  //     store.replaceReducer(rootReducer);
-  //   });
-  // }
+  if (module.hot) {
+    module.hot.accept('./model/reducer', () => {
+      store.replaceReducer(rootReducer);
+    });
+  }
 
   return store;
 }

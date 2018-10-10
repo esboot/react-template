@@ -119,7 +119,7 @@ module.exports = function () {
         chunks: ['index'],
         filename: 'index.html',
         title: "ESBoot App",
-        template: 'template/index.ejs'
+        template: 'template/index.html'
       }),
       new HtmlWebpackPlugin({
         inject: true,
