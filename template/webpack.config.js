@@ -99,7 +99,7 @@ module.exports = function () {
       historyApiFallback: {
         disableDotRule: true,
       },
-      port: 9000,
+      port: userConfig.serverPort,
       host: '0.0.0.0',
       useLocalIp: true,
       stats: {

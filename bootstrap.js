@@ -22,7 +22,7 @@ module.exports = {
   completeMessage: 'To get started:\n\n cd <%=destPath%>\n npm start\n\n',
   filter: {
     'src/model/*': 'redux',
-    'src/store.js.ejs': 'redux|router',
+    'src/store.js.ejs': 'redux',
   },
   ignore: [
     'src/_part/*',
