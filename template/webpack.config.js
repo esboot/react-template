@@ -14,7 +14,7 @@ function initEntry() {
       return prev;
     }, {}),
     plugins: userConfig.html.map(i => {
-      new HtmlWebpackPlugin({
+      return new HtmlWebpackPlugin({
         inject: true,
         chunks: [i.name],
         filename: `${i.name}.html`,
