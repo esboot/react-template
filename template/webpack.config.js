@@ -7,8 +7,27 @@ const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 
 const userConfig = require('./esboot.config');
 
+function initEntry() {
+  return {
+    entry: userConfig.html.reduce((prev, curr, idx, arr) => {
+      prev[curr.name] = curr.entry;
+      return prev;
+    }, {}),
+    plugins: userConfig.html.map(i => {
+      new HtmlWebpackPlugin({
+        inject: true,
+        chunks: [i.name],
+        filename: `${i.name}.html`,
+        title: i.title || 'ESboot App',
+        template: i.template || 'template/index.html',
+      })
+    }),
+  }
+}
+
 module.exports = function () {
   const isDevMode = process.env.NODE_ENV === 'development';
+  const { entry, plugins } = initEntry();
 
   const postloader = {
     loader: 'postcss-loader',
@@ -28,12 +47,7 @@ module.exports = function () {
     performance: {
       hints: false,
     },
-    entry: {
-      index: './src/index',
-      demo: './src/page/demo',
-      demo2: './src/page/demo2',
-      demo3: './src/page/demo3',
-    },
+    entry,
     resolve: {
       extensions: ['.js', '.jsx', '.css'],
     },
@@ -90,7 +104,7 @@ module.exports = function () {
 
   };
 
-  cfg.plugins = [];
+  cfg.plugins = plugins;
 
   if (isDevMode) {
     cfg.devServer = {
@@ -114,32 +128,7 @@ module.exports = function () {
 
     cfg.plugins = cfg.plugins.concat([
       new ErrorOverlayPlugin(),
-      new HtmlWebpackPlugin({
-        inject: true,
-        chunks: ['index'],
-        filename: 'index.html',
-        title: "ESBoot App",
-        template: 'template/index.html'
-      }),
-      new HtmlWebpackPlugin({
-        inject: true,
-        chunks: ['demo'],
-        filename: 'demo.html'
-      }),
-      new HtmlWebpackPlugin({
-        inject: true,
-        chunks: ['demo2'],
-        filename: 'demo2.html'
-      }),
-      new HtmlWebpackPlugin({
-        inject: true,
-        chunks: ['demo3'],
-        filename: 'demo3.html'
-      }),
     ]);
-    // cfg.optimization = {
-    //   noEmitOnErrors: true
-    // }
   } else {
     cfg.plugins = cfg.plugins.concat([
       new MiniCssExtractPlugin({

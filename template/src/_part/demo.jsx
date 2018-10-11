@@ -1,7 +1,7 @@
 import React from 'react';
 import './demo.scss';
 
-export class Demo extends React.Component {
+export default class Demo extends React.Component {
   state = { msg: 'click me' };
 
   onClick = () => {

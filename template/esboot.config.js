@@ -7,8 +7,6 @@ module.exports = {
       name: 'index',
       title: 'React App',
       entry: './src/index',
-      links: ['./static/swiper.min.css'],
-      scripts: ['./static/swiper.min.js']
     }
   ],
 };
