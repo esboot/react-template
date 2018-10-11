@@ -20,7 +20,7 @@ module.exports = {
     },
   ],
   completeMessage: '\nTo get started:\n\n\tcd <%=destPath%>\n\t<%=cmd%> start',
-  incompleteMessage: '\nTo get started:\n\n\tcd <%=destPath%>\n<%=cmd%> install\n\t<%=cmd%> start',
+  incompleteMessage: '\nTo get started:\n\n\tcd <%=destPath%>\n\t<%=cmd%> install\n\t<%=cmd%> start',
   filter: {
     'src/model/*': 'redux',
     'src/store.js.ejs': 'redux',
