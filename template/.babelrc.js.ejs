@@ -16,7 +16,7 @@ module.exports = {
   ],
   "plugins": [
     "react-hot-loader/babel",
-    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-class-properties"<%if (locals.cssm) {%>,
     [
       "react-css-modules",
       {
@@ -29,7 +29,7 @@ module.exports = {
         "webpackHotModuleReloading": true,
         "handleMissingStyleName": "warn"
       }
-    ]
+    ]<% } %>
   ],
   "env": {
     "production": {

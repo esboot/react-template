@@ -1,0 +1,32 @@
+import React from 'react';
+import { connect } from 'react-redux';
+import { syncAction } from '../model/action';
+import <% if (locals.cssm){ -%>styles from <% } -%>'./demo.scss';
+
+class Demo extends React.Component {
+  state = { data: 'press button' };
+
+  onClick = () => {
+    this.setState({ data: `You click me! ${Math.random()}` });
+    this.props.dispatch(syncAction(`You click me! ${Math.random()}`));
+  };
+
+  render() {
+    const { appState: { data } } = this.props;
+    return (
+      <div <% if (locals.cssm){ %>styleName="hello"<% } else { %>className={styles.hello}<% } %>>
+        Hello React!
+        <div>{data}</div>
+        <button type="button" onClick={this.onClick}> click me!</button>
+      </div>
+    );
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    appState: state.appState,
+  };
+}
+
+export default connect(mapStateToProps)(Demo);
