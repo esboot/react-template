@@ -1,0 +1,14 @@
+{
+  "name": "react-template",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://webpatch@github.com/esboot/react-template.git",
+  "author": "webpatch <webpatch@sina.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "esboot-dev"
+  },
+  "devDependencies": {
+    "esboot-dev": "^1.0.0"
+  }
+}

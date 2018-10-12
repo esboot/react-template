@@ -1,9 +1,9 @@
-<% if (locals.redux && locals.router){ -%>
-<%- include('template/src/_part/index-router-redux.jsx') -%>
-<% }else if(locals.redux) { -%>
-<%- include('template/src/_part/index-redux.jsx') -%>
-<% }else if(locals.router) { -%>
-<%- include('template/src/_part/index-router.jsx') -%>
+<% if (redux && router){ -%>
+<%- include('_part/index-router-redux.jsx') -%>
+<% }else if(redux) { -%>
+<%- include('_part/index-redux.jsx') -%>
+<% }else if(router) { -%>
+<%- include('_part/index-router.jsx') -%>
 <% }else{ -%>
-<%- include('template/src/_part/index.jsx') -%>
+<%- include('_part/index.jsx') -%>
 <% } -%>

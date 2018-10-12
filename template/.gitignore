@@ -28,6 +28,7 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-/dist/
-.idea
+dist/
+.idea/
 yarn.lock
+.vscode/

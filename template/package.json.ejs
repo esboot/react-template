@@ -1,5 +1,5 @@
 {
-  "name": "<%= appName %>",
+  "name": "esboot-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -15,14 +15,14 @@
     "history": "^4.7.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    <%_ if (locals.redux){ -%>
+    <%_ if (redux){ -%>
     "redux": "^4.0.0",
     "react-redux": "^5.0.7",
     <%_ } -%>
-    <%_ if (locals.router){ -%>
+    <%_ if (router){ -%>
     "react-router-dom": "^4.3.1",
     <%_ } -%>
-    <%_ if (locals.router && locals.redux){ -%>
+    <%_ if (router && redux){ -%>
     "connected-react-router": "^4.5.0",
     <%_ } -%>
     "prop-types": "^15.6.0"
@@ -37,7 +37,7 @@
     "autoprefixer": "^9.1.5",
     "babel-eslint": "^10.0.0",
     "babel-loader": "^8.0.2",
-     <%_ if(locals.cssm) { -%>
+     <%_ if(cssm) { -%>
     "babel-plugin-react-css-modules": "^3.4.2",
     <%_ } -%>
     "babel-plugin-transform-react-remove-prop-types": "^0.4.18",
