@@ -1,13 +1,13 @@
 import { createBrowserHistory } from 'history';
 import { applyMiddleware, compose, createStore } from 'redux';
-import { connectRouter, routerMiddleware } from 'connected-react-router';
-import rootReducer from './model/reducer';
+import { routerMiddleware } from 'connected-react-router';
+import createRootReducer from './model/reducer';
 
 export const history = createBrowserHistory();
 
 export function configureStore(initialState = {}) {
   const store = createStore(
-    connectRouter(history)(rootReducer),
+    createRootReducer(history),
     initialState,
     compose(
       applyMiddleware(
@@ -20,7 +20,7 @@ export function configureStore(initialState = {}) {
 
   if (module.hot) {
     module.hot.accept('./model/reducer', () => {
-      store.replaceReducer(connectRouter(history)(rootReducer));
+      store.replaceReducer(createRootReducer(history));
     });
   }
 

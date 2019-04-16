@@ -50,6 +50,9 @@ module.exports = function () {
     entry,
     resolve: {
       extensions: ['.js', '.jsx', '.css'],
+      alias: {
+        'react-dom': '@hot-loader/react-dom'
+      },
     },
     output: {
       filename: isDevMode ? 'js/[name].js' : 'js/[name].[chunkhash:5].js',
