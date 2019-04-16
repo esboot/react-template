@@ -130,7 +130,7 @@ module.exports = function () {
     };
 
     cfg.plugins = cfg.plugins.concat([
-      new ErrorOverlayPlugin(),
+      // new ErrorOverlayPlugin(),
     ]);
   } else {
     cfg.plugins = cfg.plugins.concat([
