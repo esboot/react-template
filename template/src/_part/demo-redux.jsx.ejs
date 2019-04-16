@@ -1,26 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { syncAction } from '../model/action';
-import <% if (cssm){ -%>styles from <% } -%>'./demo.scss';
+import <% if (!cssm){ -%>styles from <% } -%>'./demo.scss';
 
-class Demo extends React.Component {
-  state = { data: 'press button' };
+function Demo(props) {
+  const { appState, dispatch } = props;
+  const [data, setData] = useState(appState.data);
 
-  onClick = () => {
-    this.setState({ data: `You click me! ${Math.random()}` });
-    this.props.dispatch(syncAction(`You click me! ${Math.random()}`));
+  const onClick = () => {
+    setData(`You click me! ${Math.random()}`);
+    dispatch(syncAction(`You click me! ${Math.random()}`));
   };
 
-  render() {
-    const { appState: { data } } = this.props;
-    return (
-      <div <% if (cssm){ %>styleName="hello"<% } else { %>className={styles.hello}<% } %>>
-        Hello React!
-        <div>{data}</div>
-        <button type="button" onClick={this.onClick}> click me!</button>
-      </div>
-    );
-  }
+  return (
+    <div <% if (cssm){ %>styleName="hello"<% } else { %>className={styles.hello}<% } %>>
+      Hello React!
+      <div>{data}</div>
+      <button type="button" onClick={onClick}> click me!</button>
+    </div>
+  );
 }
 
 function mapStateToProps(state) {
@@ -30,3 +28,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(Demo);
+
+

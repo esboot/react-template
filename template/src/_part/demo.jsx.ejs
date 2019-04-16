@@ -1,21 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import <% if (!cssm){ -%>styles from <% } -%>'./demo.scss';
 
-export default class Demo extends React.Component {
-  state = { data: 'press button' };
+export default function Demo() {
+  const [data, setData] = useState('press button');
 
-  onClick = () => {
-    this.setState({ data: `You click me! ${Math.random()}` });
+  const onClick = () => {
+    setData(`You click me! ${Math.random()}`);
   };
 
-  render() {
-    const { data } = this.state;
-    return (
-      <div <% if (cssm){ %>styleName="hello"<% } else { %>className={styles.hello}<% } %>>
-        Hello React!
-        <div>{data}</div>
-        <button type="button" onClick={this.onClick}> click me!</button>
-      </div>
-    );
-  }
+  return (
+    <div <% if (cssm){ %>styleName="hello"<% } else { %>className={styles.hello}<% } %>>
+      Hello React!
+      <div>{data}</div>
+      <button type="button" onClick={onClick}> click me!</button>
+    </div>
+  );
 }

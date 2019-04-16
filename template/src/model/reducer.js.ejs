@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+<% if(redux && router) { -%>import { connectRouter } from 'connected-react-router';<% } -%>
 import * as ActionTypes from './action-types';
 
 function appState(state = { data: 'Hello from redux!' }, action) {
@@ -10,4 +11,11 @@ function appState(state = { data: 'Hello from redux!' }, action) {
   }
 }
 
+<% if(redux && router) { -%>
+export default history => combineReducers({
+  router: connectRouter(history),
+  appState,
+});
+<% } else { -%>
 export default combineReducers({ appState });
+<% } -%>
