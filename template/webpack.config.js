@@ -3,7 +3,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 
 const userConfig = require('./esboot.config');
 
@@ -36,7 +35,7 @@ module.exports = function () {
       ident: 'postcss',
       plugins: [
         require('precss')(),
-        require('autoprefixer')({ browsers: userConfig.browsers })
+        require('autoprefixer')({ overrideBrowserslist: userConfig.browsers })
       ],
     }
   };
@@ -112,7 +111,6 @@ module.exports = function () {
   if (isDevMode) {
     cfg.devServer = {
       compress: true,
-      watchContentBase: true,
       historyApiFallback: {
         disableDotRule: true,
       },
@@ -129,9 +127,6 @@ module.exports = function () {
       },
     };
 
-    cfg.plugins = cfg.plugins.concat([
-      // new ErrorOverlayPlugin(),
-    ]);
   } else {
     cfg.plugins = cfg.plugins.concat([
       new MiniCssExtractPlugin({
